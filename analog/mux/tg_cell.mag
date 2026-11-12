@@ -1,0 +1,41 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 0
+<< metal1 >>
+rect 21 -23 1079 23
+rect 527 0 573 1600
+rect -67 -660 -21 -300
+rect 1121 -660 1167 -300
+rect -67 -683 1167 -637
+rect -29 310 29 1600
+rect 1071 510 1129 1600
+rect -187 -29 -129 29
+rect -187 0 -129 1600
+rect 1229 -29 1287 29
+rect 1229 0 1287 1600
+<< viali >>
+rect -175 -17 -141 17
+rect 1241 -17 1275 17
+use dev_nfet_w3p0_l0p15_t1b0  xn
+timestamp 0
+transform 1 0 0 0 1 0
+box -211 -479 211 479
+use dev_pfet_w5p0_l0p15_t1b0  xp
+timestamp 0
+transform -1 0 1100 0 1 0
+box 889 -684 1311 684
+<< labels >>
+rlabel metal1 -168 1550 -148 1570 0 VSS
+port 1 nsew
+rlabel metal1 -10 1550 10 1570 0 SEL
+port 2 nsew
+rlabel metal1 540 1550 560 1570 0 A
+port 3 nsew
+rlabel metal1 1090 1550 1110 1570 0 SELB
+port 4 nsew
+rlabel metal1 1248 1550 1268 1570 0 VDD
+port 5 nsew
+rlabel metal1 540 -670 560 -650 0 B
+port 6 nsew
+<< end >>

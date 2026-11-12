@@ -1,0 +1,6 @@
+** sch_path: /home/jonobo/working/tinytapeout/pipeline-test/tt-analog-sky26e/analog/mux/tg_cell.sch
+.subckt tg_cell SEL SELB A B VSS VDD
+*.PININFO SEL:I SELB:I A:B B:B VSS:B VDD:B
+XMn B SEL A VSS sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 m=1
+XMp B SELB A VDD sky130_fd_pr__pfet_01v8 L=0.15 W=5 nf=1 m=1
+.ends

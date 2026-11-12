@@ -1,0 +1,15 @@
+* NGSPICE file created from tg_cell.ext - technology: sky130A
+
+.subckt dev_nfet_w3p0_l0p15_t1b0 B D S G
+X0 S G D B sky130_fd_pr__nfet_01v8 ad=0.87 pd=6.58 as=0.87 ps=6.58 w=3 l=0.15
+.ends
+
+.subckt dev_pfet_w5p0_l0p15_t1b0 B D S G
+X0 S G D B sky130_fd_pr__pfet_01v8 ad=1.45 pd=10.58 as=1.45 ps=10.58 w=5 l=0.15
+.ends
+
+.subckt tg_cell VSS SEL A SELB VDD B
+Xxn VSS B A SEL dev_nfet_w3p0_l0p15_t1b0
+Xxp VDD B A SELB dev_pfet_w5p0_l0p15_t1b0
+.ends
+
