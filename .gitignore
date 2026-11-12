@@ -9,3 +9,18 @@ test/sim_build
 test/__pycache__/
 test/results.xml
 test/gate_level_netlist.v
+# generated, reproducible from the scripts (see layout/build_all.sh, digital/librelane/)
+layout/build/
+layout/*.ext
+layout/tt_um_snn_mixed.mag
+layout/tt_um_snn_mixed_golden.spice
+analog/mux/*.ext
+analog/mux/sim/
+digital/librelane/runs/
+digital/librelane/__pycache__/
+digital/macro_new/
+digital/test/sim_build*/
+digital/test/__pycache__/
+digital/test/*.fst
+**/__pycache__/
+digital/test/results.xml

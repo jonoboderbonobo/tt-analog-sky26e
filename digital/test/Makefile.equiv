@@ -1,0 +1,15 @@
+# Co-simulation of the RTL against the hardened netlist, under the unchanged golden test:   make -f Makefile.equiv
+# Needs the netlist without power pins, ../macro_new/nl/dig_top.nl.v of a LibreLane run (not kept in git).
+SIM ?= icarus
+TOPLEVEL_LANG ?= verilog
+SIM_BUILD = sim_build_equiv
+NL ?= $(PWD)/../macro_new/nl/dig_top.nl.v
+PDKV = $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog
+VERILOG_SOURCES = $(PWD)/../src/snn_tiny.v $(PWD)/../src/dig_top.v $(PWD)/tb_equiv.v $(PWD)/sim_build_equiv/dig_top_gl.v $(PDKV)/primitives.v $(PDKV)/sky130_fd_sc_hd.v
+COMPILE_ARGS += -DFUNCTIONAL -DUNIT_DELAY=\#0
+TOPLEVEL = tb_dig
+COCOTB_TEST_MODULES = test_dig,test_equiv_check
+include $(shell cocotb-config --makefiles)/Makefile.sim
+
+$(PWD)/sim_build_equiv/dig_top_gl.v: $(NL)
+	mkdir -p sim_build_equiv && sed 's/^module dig_top /module dig_top_gl /' $(NL) > $@

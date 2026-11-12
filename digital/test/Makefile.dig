@@ -1,0 +1,10 @@
+# dig_top through its pins:   make -f Makefile.dig        (RTL, Icarus, cocotb)
+SIM ?= icarus
+TOPLEVEL_LANG ?= verilog
+FST ?= -fst
+SRC_DIR = $(PWD)/../src
+VERILOG_SOURCES += $(SRC_DIR)/snn_tiny.v $(SRC_DIR)/dig_top.v $(PWD)/tb_dig.v
+TOPLEVEL = tb_dig
+COCOTB_TEST_MODULES = test_dig
+SIM_BUILD = sim_build_dig
+include $(shell cocotb-config --makefiles)/Makefile.sim
