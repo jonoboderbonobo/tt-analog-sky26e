@@ -1,11 +1,11 @@
 # Tiny Tapeout project information
 project:
-  title:        "Pipeline test: ua0-ua1 strap"      # Project title
+  title:        "Spiking core with analog switch matrix"      # Project title
   author:       "Jonas Boerschmann"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Analog pipeline test: ua[0] and ua[1] joined by a metal strap. Checks the flow, not a real design"      # One line description of what your project does
-  language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  description:  "4-neuron spiking network (SPI-like serial config, bit-exact with a tinyODIN model) plus 2x4 transmission-gate matrix to ua[0], ua[1]; oscillator and ADC blocks to follow"      # One line description of what your project does
+  language:     "Verilog + analog" # other examples include Verilog, Amaranth, VHDL, etc
+  clock_hz:     20000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x2"          # Valid values for analog projects: 1x2, 2x2
@@ -15,7 +15,7 @@ project:
   uses_vapwr: false       # Set to true if your project uses second analog power supply (VAPWR) in addition to 1.8V (VDPWR)
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_pipetest_analog"
+  top_module:  "tt_um_snn_mixed"
 
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
   source_files:        
@@ -25,24 +25,24 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
+  ui[0]: "cs of the configuration port"
+  ui[1]: "din of the configuration port (MSB first)"
+  ui[2]: "input event (rising edge)"
+  ui[3]: "input line number of the event (0/1)"
+  ui[4]: "time-reference event (rising edge, leaks all neurons)"
   ui[5]: ""
   ui[6]: ""
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "neuron 0 spiked"
+  uo[1]: "neuron 1 spiked"
+  uo[2]: "neuron 2 spiked"
+  uo[3]: "neuron 3 spiked"
+  uo[4]: "busy"
+  uo[5]: "oscillator divided (0 while off)"
+  uo[6]: "por_n of the analog side"
+  uo[7]: "clk/128 heartbeat"
 
   # Bidirectional pins
   uio[0]: ""
@@ -55,8 +55,8 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: "Strap end A (connected to ua[1])"
-  ua[1]: "Strap end B (connected to ua[0])"
+  ua[0]: "analog channel group 0 (switch matrix)"
+  ua[1]: "analog channel group 1 (switch matrix)"
   ua[2]: ""
   ua[3]: ""
   ua[4]: ""

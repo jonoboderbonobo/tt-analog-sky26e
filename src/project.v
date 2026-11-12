@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_pipetest_analog (
+module tt_um_snn_mixed (
     input  wire       VGND,
     input  wire       VDPWR,    // 1.8v power supply
 //    input  wire       VAPWR,    // 3.3v power supply
@@ -20,4 +20,5 @@ module tt_um_pipetest_analog (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+// Behavioural model only for the tool flow: the real design is the hand-assembled layout in gds/ (digital macro digital/src/dig_top.v + analog switches).
 endmodule
